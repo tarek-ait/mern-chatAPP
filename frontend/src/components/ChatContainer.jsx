@@ -7,7 +7,16 @@ import { useAuthStore } from "../store/useAuthStore.js";
 
 
 const ChatContainer = () => {
-  const { selectedUser, getMessages, messages, isMessagesLoading, subscribeToMessages, unsubscribeToMessages } = useChatStore();
+
+  const { 
+    selectedUser, 
+    getMessages, 
+    messages, 
+    isMessagesLoading, 
+    subscribeToMessages, 
+    unsubscribeToMessages 
+  } = useChatStore();
+
   const { authUser } = useAuthStore();
   const messagesEndRef = useRef(null);
 
@@ -18,12 +27,12 @@ const ChatContainer = () => {
 
   // Fetch and subscribe to messages when the selected user changes
   useEffect(() => {
-    if (selectedUser) {
+    
       getMessages(selectedUser._id);
       subscribeToMessages();
       return () => unsubscribeToMessages();
-    }
-  }, [selectedUser, getMessages, subscribeToMessages, unsubscribeToMessages]);
+    
+  }, [selectedUser._id, getMessages, subscribeToMessages, unsubscribeToMessages]);
 
   // Scroll to bottom when new messages arrive
   useEffect(() => {
@@ -61,7 +70,7 @@ const ChatContainer = () => {
     <div className="flex flex-col flex-1 overflow-auto">
       <ChatHeader />
       <div className="flex-1 overflow-y-auto p-4">
-        {Array.isArray(messages) && messages.map((message) => (
+        {messages.map((message) => (
           <div
             key={message.id}
             className={`chat ${message.senderId === authUser._id ? 'chat-end' : 'chat-start'}`}

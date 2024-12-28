@@ -7,8 +7,8 @@ import { useAuthStore } from "../store/useAuthStore.js";
 const Sidebar = () => {
 
 
-  const { getUsers, users = [], selectedUser, setSelectedUser, isUsersLoading } = useChatStore();
-  const { onlineUsers = [] } = useAuthStore();
+  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } = useChatStore();
+  const { onlineUsers  } = useAuthStore();
 
   const [showOnline, setShowOnline] = useState(false)
 
@@ -16,7 +16,7 @@ const Sidebar = () => {
     getUsers()
   }, [getUsers]);
 
-  const filteredUsers = showOnline ? users.filter(user => onlineUsers.includes(user._id)) : users
+  const filteredUsers = showOnline ? users.filter((user) => onlineUsers.includes(user._id)) : users
 
   if (isUsersLoading) return <SidebarSkeleton />
   return (
