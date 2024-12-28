@@ -61,7 +61,7 @@ const ChatContainer = () => {
     <div className="flex flex-col flex-1 overflow-auto">
       <ChatHeader />
       <div className="flex-1 overflow-y-auto p-4">
-        {messages.map((message) => (
+        {Array.isArray(messages) && messages.map((message) => (
           <div
             key={message.id}
             className={`chat ${message.senderId === authUser._id ? 'chat-end' : 'chat-start'}`}
@@ -75,7 +75,7 @@ const ChatContainer = () => {
                       : (selectedUser.profilePic || '/avatar.png')
                   }
                   alt="profile picture"
-                  onError={(e) => { e.target.onerror = null; e.target.src = '/avatar.png'; }} // Fallback to default avatar if image fails to load
+                  onError={(e) => { e.target.onerror = null; e.target.src = '/avatar.png'; }} // Fallback to default avatar
                 />
               </div>
             </div>
