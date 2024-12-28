@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+  }
+  
+  #root {
+    min-height: 100vh; /* Ensure the root element covers the full viewport height */
+    display: flex;
+    flex-direction: column;
+  }
