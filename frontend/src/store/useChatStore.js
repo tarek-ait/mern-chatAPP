@@ -49,16 +49,25 @@ export const useChatStore = create((set, get) => ({
     if (!selectedUser) return;
 
     const socket = useAuthStore.getState().socket;
+    if (!socket) {
+      console.error('Socket is not initialized');
+      return;
+    }
 
     socket.on("new message", (message) => {
       const isMessageSentFromSelectedUser = message.senderId === selectedUser._id || message.receiverId === selectedUser._id;
       if (!isMessageSentFromSelectedUser) return;
+      console.log('Received new message:', message); // Log received message
       set((state) => ({ messages: [...state.messages, message] }));
     });
   },
 
   unsubscribeToMessages: () => {
     const socket = useAuthStore.getState().socket;
+    if (!socket) {
+      console.error('Socket is not initialized');
+      return;
+    }
     socket.off("new message");
   },
 
