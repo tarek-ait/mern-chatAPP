@@ -144,7 +144,7 @@ const SignUpPage = () => {
       {/* Right side */}
       <AuthImagePattern
         title="join our community"
-        subtitle="Chat with tarek's friends, why use instagram, facebook or snap, when you can you this cool thing! Chat with me baby!"
+        subtitle="Chat with tarek's friends, why use instagram, facebook or snap, when you can you this cool thing!!"
       />
     </div>
   )
